@@ -1,0 +1,6 @@
+[core]
+    remote = wine_prediction
+['remote "wine_remote"']
+    url = s3://mlops-sai-dvc-bucket
+['remote "wine_prediction"']
+    url = s3://mlops-sai-dvc-bucket
