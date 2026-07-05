@@ -9,13 +9,13 @@ WORKDIR /app
 
 # Install system deps (if needed) and Python deps
 COPY requirements.txt .
-RUN dnf update -y \
- && dnf install -y gcc glibc-devel \
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends gcc libc6-dev \
  && pip install --no-cache-dir -r requirements.txt \
- && dnf remove -y gcc glibc-devel \
- && dnf autoremove -y \
- && dnf clean all
- 
+ && apt-get purge -y gcc libc6-dev \
+ && apt-get autoremove -y \
+ && rm -rf /var/lib/apt/lists/*
+
 # Copy app code and model file(s)
 COPY . .
 
